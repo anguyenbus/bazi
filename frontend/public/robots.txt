@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /input
+Disallow: /profile
+
+Sitemap: https://huyencobattu.com/sitemap.xml

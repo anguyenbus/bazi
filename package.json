@@ -1,0 +1,24 @@
+{
+    "name": "huyencobattu",
+    "version": "2.0.0",
+    "private": true,
+    "description": "Huyền Cơ Bát Tự - BaZi Analysis Platform",
+    "workspaces": [
+        "frontend",
+        "backendjs"
+    ],
+    "scripts": {
+        "dev": "concurrently -n \"API,WEB\" -c \"yellow,cyan\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+        "dev:backend": "npm run dev -w backendjs",
+        "dev:frontend": "npm run dev -w frontend",
+        "start": "npm run start -w backendjs",
+        "build": "npm run build -w frontend",
+        "install:all": "npm install"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}

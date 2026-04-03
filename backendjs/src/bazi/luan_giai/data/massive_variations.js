@@ -1,0 +1,233 @@
+/**
+ * Massive Variations - Các biến thể prefixes, suffixes, adjectives
+ * Mirrored from Python backend with enrichment.
+ */
+
+const PREFIXES = {
+    'time': [
+        "Trong giai đoạn này,", "Thời kỳ này,", "Vào lúc này,", "Hiện tại,",
+        "Từ nay trở đi,", "Trong tương lai gần,", "Sắp tới,", "Không lâu nữa,",
+        "Trong vòng vài năm tới,", "Trong 10 năm tới,", "Hậu vận,", "Tiền vận,",
+        "Trung vận,", "Giai đoạn thanh xuân,", "Khi về già,", "Khi trẻ,",
+        "Lúc trung niên,", "Vào tuổi 30,", "Sau tuổi 40,", "Trước tuổi 50,",
+        "Từ 20 đến 30 tuổi,", "Từ 30 đến 40 tuổi,", "Từ 40 đến 50 tuổi,",
+        "Sau 50 tuổi,", "Khi còn trẻ,", "Khi đã trưởng thành,",
+        "Trong thập kỷ tới,", "Trong 5 năm tới,", "Trong năm nay,",
+        "Vào mùa Xuân,", "Vào mùa Hạ,", "Vào mùa Thu,", "Vào mùa Đông,",
+    ],
+    'condition': [
+        "Nếu biết nắm bắt cơ hội,", "Nếu chịu khó làm việc,", "Nếu biết tiết kiệm,",
+        "Nếu có quý nhân giúp đỡ,", "Nếu gặp thời,", "Nếu đúng lúc đúng chỗ,",
+        "Với sự nỗ lực,", "Với ý chí kiên cường,", "Nhờ sự cần mẫn,",
+        "Nhờ có phúc đức,", "Nhờ có tổ tiên phù hộ,", "Nhờ duyên lành,",
+        "Một khi đã quyết tâm,", "Khi thời cơ đến,", "Khi vận may chiếu mệnh,",
+        "Nếu vượt qua thử thách,", "Nếu kiên trì đến cùng,", "Nếu không bỏ cuộc,",
+        "Với sự hỗ trợ từ gia đình,", "Với niềm tin vững chắc,",
+        "Nhờ tính cách kiên định,", "Nhờ óc quan sát tốt,",
+        "Nếu biết học hỏi,", "Nếu chịu lắng nghe,", "Nếu biết nhìn xa,",
+        "Trong điều kiện thuận lợi,", "Khi môi trường tốt,",
+        "Nếu được đào tạo đúng cách,", "Với mentor phù hợp,",
+    ],
+    'transition': [
+        "Về phương diện này,", "Xét về khía cạnh này,", "Nhìn chung,",
+        "Đặc biệt là,", "Quan trọng hơn,", "Điều đáng nói là,",
+        "Cần lưu ý rằng,", "Một điểm nổi bật là,", "Nét đặc trưng là,",
+        "Có thể thấy rằng,", "Rõ ràng là,", "Không thể phủ nhận,",
+        "Theo phân tích,", "Dựa trên lá số,", "Căn cứ vào cách cục,",
+        "Từ góc nhìn Bát Tự,", "Theo lý thuyết Tử Vi,", "Về mặt ngũ hành,",
+        "Xét theo thập thần,", "Nhìn từ góc độ này,", "Phân tích sâu hơn,",
+        "Đáng chú ý là,", "Đặc điểm nổi bật là,", "Một điều thú vị là,",
+    ],
+    'emphasis': [
+        "Đặc biệt,", "Nhất là,", "Quan trọng nhất,", "Trên hết,",
+        "Không thể bỏ qua,", "Điều cốt lõi là,", "Cốt yếu là,",
+        "Điểm mấu chốt là,", "Yếu tố quyết định là,", "Then chốt là,",
+        "Bản chất của vấn đề là,", "Điều căn bản là,", "Nền tảng là,",
+        "Tiền đề quan trọng là,", "Điều kiện tiên quyết là,",
+        "Không thể thiếu,", "Bắt buộc phải có,", "Tuyệt đối cần,",
+    ],
+};
+
+const PERSONALITY_ADJECTIVES = {
+    'positive': [
+        "thông minh", "lanh lợi", "nhanh nhẹn", "sáng tạo", "đổi mới",
+        "chăm chỉ", "cần mẫn", "siêng năng", "kiên nhẫn", "bền bỉ",
+        "trung thực", "thật thà", "chân thành", "đáng tin", "trung thành",
+        "nhân hậu", "tốt bụng", "từ bi", "bao dung", "rộng lượng",
+        "quyết đoán", "mạnh mẽ", "dũng cảm", "can đảm", "gan dạ",
+        "lạc quan", "vui vẻ", "yêu đời", "tích cực", "năng động",
+        "khiêm tốn", "nhún nhường", "biết lắng nghe", "cầu tiến", "ham học hỏi",
+        "linh hoạt", "thích nghi", "uyển chuyển", "khéo léo", "tinh tế",
+        "ổn định", "vững vàng", "chín chắn", "trưởng thành", "đáng kính",
+        "hào phóng", "thết đãi", "vui tính", "hài hước", "dí dỏm",
+        "lãng mạn", "đa cảm", "nhạy cảm", "sâu sắc", "tinh tế",
+        "thanh cao", "tao nhã", "lịch sự", "văn minh", "có học",
+        "tự tin", "bản lĩnh", "có chủ kiến", "độc lập", "tự chủ",
+        "có trách nhiệm", "đáng tin cậy", "biết giữ lời", "nghiêm túc", "cẩn thận",
+        "giàu tình cảm", "thấu hiểu", "đồng cảm", "quan tâm", "chu đáo",
+        "thẳng thắn", "trực tiếp", "rõ ràng", "minh bạch", "sòng phẳng",
+        "hiền lành", "dịu dàng", "nhẹ nhàng", "ôn hòa", "thuần hậu",
+        "nhiệt tình", "hăng hái", "sốt sắng", "tận tâm", "hết lòng",
+        "công bằng", "chính trực", "ngay thẳng", "liêm chính", "trong sạch",
+        "kiên định", "vững vàng", "không lay động", "có lập trường", "nhất quán",
+    ],
+    'negative': [
+        "thiếu kiên nhẫn", "nóng vội", "hấp tấp", "bồng bột", "liều lĩnh",
+        "cố chấp", "bảo thủ", "không linh hoạt", "cứng đầu", "khó thay đổi",
+        "hay lo lắng", "lo âu", "bi quan", "tiêu cực", "thiếu tự tin",
+        "tự ti", "nhút nhát", "rụt rè", "e dè", "dè dặt",
+        "kiêu ngạo", "tự phụ", "ngạo mạn", "khinh người", "coi thường",
+        "ích kỷ", "vị kỷ", "chỉ nghĩ cho mình", "không biết chia sẻ", "tham lam",
+        "hay nghi ngờ", "thiếu tin tưởng", "đa nghi", "cảnh giác", "phòng thủ",
+        "nóng tính", "dễ nổi giận", "hay cáu gắt", "khó chịu", "bực bội",
+        "buồn phiền", "u uất", "trầm cảm", "chán nản", "thất vọng",
+        "lười biếng", "ỷ lại", "không cố gắng", "thiếu động lực", "chây lười",
+        "hay phàn nàn", "kêu ca", "than thở", "không hài lòng", "đòi hỏi",
+        "bừa bộn", "mất trật tự", "không ngăn nắp", "cẩu thả", "qua loa",
+        "hay sợ hãi", "nhát gan", "không dám mạo hiểm", "an phận", "cam chịu",
+        "hay tị nạnh", "ghen ghét", "đố kỵ", "so đo", "tính toán",
+        "hay nói xấu", "dèm pha", "gièm pha", "đâm bị thóc", "gây chia rẽ",
+    ],
+    'neutral': [
+        "trầm lắng", "ít nói", "kín đáo", "bí ẩn", "khó đoán",
+        "độc lập", "thích một mình", "tự do", "không bị ràng buộc", "phóng khoáng",
+        "thực tế", "thiết thực", "không mơ mộng", "chân đất", "giản dị",
+        "phức tạp", "đa chiều", "nhiều mặt", "khó hiểu", "sâu xa",
+        "nhạy cảm", "dễ xúc động", "giàu cảm xúc", "hay động lòng", "mềm yếu",
+        "cứng rắn", "không dễ lay", "khó ảnh hưởng", "có nguyên tắc", "cứng nhắc",
+        "hay thay đổi", "không ổn định", "biến đổi", "thất thường", "bấp bênh",
+        "tham vọng", "có mục tiêu", "hướng lên", "muốn nhiều", "đòi hỏi cao",
+        "hài lòng", "dễ thỏa mãn", "không đòi hỏi", "biết đủ", "tri túc",
+        "cạnh tranh", "muốn thắng", "không nhường", "quyết liệt", "mạnh mẽ",
+    ],
+};
+
+const CAREER_PHRASES = {
+    'success': [
+        "sự nghiệp phát triển thuận lợi", "công việc hanh thông", "thăng tiến nhanh chóng",
+        "được cấp trên tin tưởng", "có cơ hội thăng chức", "tài năng được công nhận",
+        "đạt được vị trí cao", "có ảnh hưởng trong ngành", "thành danh trong lĩnh vực",
+        "xây dựng được uy tín", "trở thành chuyên gia", "được nhiều người biết đến",
+        "sự nghiệp vững vàng", "có chỗ đứng trong xã hội", "được tôn trọng",
+        "công việc ổn định", "thu nhập tốt", "tài chính dồi dào",
+        "kinh doanh phát đạt", "làm ăn thuận lợi", "đầu tư sinh lời",
+        "có nhiều đối tác tin cậy", "mạng lưới rộng lớn", "quan hệ tốt đẹp",
+        "được quý nhân hỗ trợ", "gặp may mắn trong công việc", "thuận buồm xuôi gió",
+        "thành công vượt mong đợi", "đạt được giấc mơ", "hoàn thành mục tiêu",
+        "trở thành lãnh đạo", "có quyền lực", "có tiếng nói",
+        "xây dựng được di sản", "để lại dấu ấn", "có đóng góp cho xã hội",
+        "được vinh danh", "nhận giải thưởng", "được công nhận quốc tế",
+        "mở rộng kinh doanh", "phát triển thị trường", "chinh phục đỉnh cao",
+        "trở thành biểu tượng", "có sức ảnh hưởng lớn", "thay đổi ngành nghề",
+    ],
+    'challenge': [
+        "gặp khó khăn trong công việc", "bị cản trở", "có trở ngại",
+        "cần vượt qua thử thách", "đối mặt với áp lực", "chịu nhiều stress",
+        "cạnh tranh gay gắt", "đối thủ mạnh", "thị trường khó khăn",
+        "thiếu cơ hội", "bị bỏ lỡ", "không được đánh giá đúng",
+        "gặp tiểu nhân", "bị gây khó dễ", "có người chống đối",
+        "mất việc có thể xảy ra", "công việc bấp bênh", "không ổn định",
+        "thu nhập giảm sút", "tài chính khó khăn", "thiếu hụt vốn",
+        "kinh doanh thua lỗ", "đầu tư thất bại", "mất tiền",
+        "mất uy tín", "bị hiểu lầm", "danh tiếng bị ảnh hưởng",
+        "cần thay đổi hướng đi", "phải chuyển nghề", "không phù hợp",
+        "quá tải công việc", "kiệt sức", "cháy hết năng lượng",
+        "không được hỗ trợ", "thiếu nguồn lực", "làm việc một mình",
+        "gặp trục trặc kỹ thuật", "sự cố bất ngờ", "vấn đề ngoài tầm kiểm soát",
+    ],
+    'advice': [
+        "nên tập trung vào thế mạnh", "phát huy năng lực", "khai thác tiềm năng",
+        "cần học hỏi thêm", "nâng cao kỹ năng", "trau dồi kiến thức",
+        "xây dựng mạng lưới", "kết nối với mọi người", "mở rộng quan hệ",
+        "tìm mentor phù hợp", "học từ người giỏi", "có người hướng dẫn",
+        "kiên nhẫn chờ đợi", "không vội vàng", "biết chọn thời cơ",
+        "cẩn thận trong quyết định", "suy nghĩ kỹ trước khi hành động", "không liều lĩnh",
+        "giữ vững niềm tin", "không bỏ cuộc", "tiếp tục cố gắng",
+        "cân bằng công việc và cuộc sống", "không quá lao vào công việc", "chăm sóc bản thân",
+        "lắng nghe phản hồi", "tiếp thu ý kiến", "sẵn sàng thay đổi",
+        "tìm lĩnh vực phù hợp", "chọn ngành nghề đúng", "theo duyên đam mê",
+        "bắt đầu từ nhỏ", "phát triển từng bước", "không nôn nóng",
+        "tận dụng mọi cơ hội", "không bỏ lỡ", "sẵn sàng nắm bắt",
+        "xây dựng thương hiệu cá nhân", "tạo danh tiếng", "để lại ấn tượng tốt",
+        "đầu tư cho tương lai", "tích lũy kinh nghiệm", "xây dựng nền tảng",
+    ],
+};
+
+const WEALTH_PHRASES = {
+    'abundance': [
+        "tài lộc dồi dào", "tiền bạc sung túc", "của cải nhiều", "gia sản lớn",
+        "thu nhập cao", "lương bổng hậu hĩ", "thưởng nhiều", "tiền vào như nước",
+        "đầu tư sinh lời", "kinh doanh lãi lớn", "làm ăn phát đạt", "buôn may bán đắt",
+        "có nhiều nguồn thu", "đa dạng hóa thu nhập", "không phụ thuộc một nguồn",
+        "tích lũy được nhiều", "có của ăn của để", "dư dả", "no đủ",
+        "giàu có", "phú quý", "sung túc", "không thiếu thốn", "đầy đủ",
+        "có tài sản bất động sản", "sở hữu nhiều nhà", "có đất đai", "bất động sản sinh lời",
+        "đầu tư chứng khoán", "cổ phiếu lên giá", "tài sản tăng trưởng", "vốn sinh sôi",
+        "được thừa kế", "có phúc ấm cha mẹ", "gia đình hỗ trợ", "tổ tiên để lại",
+        "may mắn về tiền bạc", "tài vận hanh thông", "phát tài", "phát lộc",
+    ],
+    'scarcity': [
+        "tài lộc hạn chế", "tiền bạc eo hẹp", "thu nhập thấp", "lương không đủ sống",
+        "khó khăn về tài chính", "thiếu thốn", "túng thiếu", "nghèo khó",
+        "kinh doanh thua lỗ", "đầu tư thất bại", "mất tiền", "hao tài",
+        "nợ nần", "vay mượn", "không trả được nợ", "chìm trong nợ",
+        "tiêu xài hoang phí", "không biết tiết kiệm", "tiền vào tiền ra", "hết nhanh",
+        "bị lừa đảo", "mất tiền oan", "bị chiếm đoạt", "tài sản bị mất",
+        "không có tích lũy", "tay trắng", "không có gì", "bắt đầu lại từ đầu",
+        "phải làm việc vất vả", "kiếm tiền khó", "không dễ dàng", "phải đổ mồ hôi",
+        "gia đình không hỗ trợ", "tự thân vận động", "không có bước đệm", "khởi đầu khó khăn",
+        "vận tài không tốt", "tiền bạc không thuận", "hay gặp trở ngại", "khó khăn chồng chất",
+    ],
+};
+
+const RELATIONSHIP_PHRASES = {
+    'romantic': [
+        "tình yêu đẹp", "tình cảm sâu sắc", "yêu thương chân thành", "tình nghĩa vẹn toàn",
+        "được yêu thương", "có người quan tâm", "không cô đơn", "có bạn đồng hành",
+        "hôn nhân hạnh phúc", "vợ chồng hòa thuận", "gia đình êm ấm", "nhà cửa yên vui",
+        "gặp được người phù hợp", "duyên số tốt đẹp", "trời định", "nên duyên",
+        "được chồng/vợ yêu thương", "có người đỡ đần", "chia sẻ niềm vui nỗi buồn",
+        "tình yêu thủy chung", "chung thủy một lòng", "không phản bội", "mãi mãi bên nhau",
+    ],
+    'challenging': [
+        "tình duyên lận đận", "khó tìm người phù hợp", "duyên muộn", "chậm kết hôn",
+        "hay gặp trắc trở", "tình yêu không suôn sẻ", "nhiều sóng gió", "thử thách",
+        "bị phản bội", "bị phụ tình", "thất tình", "tổn thương",
+        "hôn nhân có vấn đề", "vợ chồng bất hòa", "cãi vã", "xung đột",
+        "thiếu thấu hiểu", "không đồng điệu", "khác biệt", "không hợp",
+    ],
+};
+
+const HEALTH_PHRASES = {
+    'good': [
+        "sức khỏe tốt", "cơ thể khỏe mạnh", "không bệnh tật", "khỏe như trâu",
+        "thể lực sung mãn", "năng lượng dồi dào", "tràn đầy sức sống", "hoạt bát",
+        "tinh thần minh mẫn", "đầu óc sáng suốt", "trí tuệ sắc bén", "nhanh nhẹn",
+        "sống thọ", "tuổi thọ cao", "trường thọ", "sống lâu",
+    ],
+    'concern': [
+        "cần chú ý sức khỏe", "đề phòng bệnh tật", "đừng chủ quan", "cẩn thận",
+        "có thể gặp vấn đề sức khỏe", "bệnh vặt", "ốm đau", "mệt mỏi",
+        "cần kiểm tra sức khỏe", "khám định kỳ", "theo dõi", "chú ý",
+    ],
+};
+
+const SENTENCE_TEMPLATES = [
+    "Bạn là người {adj}, {trait}.",
+    "Tính cách của bạn {adj} và {trait}.",
+    "Về phương diện {aspect}, bạn {description}.",
+    "Sự nghiệp của bạn {career}.",
+    "Vận mệnh cho thấy {fortune}.",
+    "Bạn cần chú ý về {concern}.",
+    "Lời khuyên cho bạn: {advice}.",
+];
+
+module.exports = {
+    PREFIXES,
+    PERSONALITY_ADJECTIVES,
+    CAREER_PHRASES,
+    WEALTH_PHRASES,
+    RELATIONSHIP_PHRASES,
+    HEALTH_PHRASES,
+    SENTENCE_TEMPLATES
+};
